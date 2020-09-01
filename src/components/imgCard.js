@@ -5,8 +5,28 @@ import {
 
 
 function ImgCard(props) {
-
-
+const isVideo = props.mediaType
+if(isVideo === 'video'){
+    return (
+        <>
+        <Button color='primary' id='toggler' style={{marginBottom: '1rem'}}>Photo of the Day</Button>
+        <UncontrolledCollapse toggler='#toggler'>
+            <Card>
+                <iframe src={props.vidUrl}
+                    frameBorder='0'
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen={true}
+                    title='video'
+                    width='100%'
+                    height='400px'
+                />
+                <CardHeader>{props.title}</CardHeader>
+                <CardText style={{padding:'5%'}}>{props.explanation}</CardText>
+            </Card>
+        </UncontrolledCollapse>
+        </>
+    ) 
+} else {
     return (
         <>
         <Button color='primary' id='toggler' style={{marginBottom: '1rem'}}>Photo of the Day</Button>
@@ -19,6 +39,8 @@ function ImgCard(props) {
         </UncontrolledCollapse>
         </>
     )
+}
+
 }
 
 export default ImgCard;
